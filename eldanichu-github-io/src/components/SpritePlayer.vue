@@ -12,11 +12,6 @@ import {ref, defineProps, computed} from "vue";
 import {tileset_legacy} from "@/assets/AssetsImporter";
 
 const props = defineProps({
-  src: {
-    type: String,
-    default: '#',
-    required: true
-  },
   size: {
     type: [String, Number],
     default: 16
