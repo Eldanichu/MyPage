@@ -13,8 +13,8 @@ export class Timer {
         this._elapsed = 0;
         this.duration = duration;
         this.running = false;
-        this.animation = new AnimationTimer(() => {
-            this.update()
+        this.animation = new AnimationTimer((now) => {
+            this.update(now)
         });
         this.onUpdate = null;
         this.onTimeout = null;
@@ -24,9 +24,9 @@ export class Timer {
         }
     }
 
-    update() {
+    update(now) {
         if (this.duration === -1 && this.isFunc(this.onUpdate)) {
-            this.onUpdate();
+            this.onUpdate(now);
             return;
         }
         this._elapsed = this._ptime * 60 / 10000
@@ -34,7 +34,7 @@ export class Timer {
             if (!this.isFunc(this.onUpdate)) {
                 return;
             }
-            this.onUpdate(this._elapsed)
+            this.onUpdate(now,this._elapsed)
         } else {
             if (!this.isFunc(this.onTimeout)) {
                 this.stop()

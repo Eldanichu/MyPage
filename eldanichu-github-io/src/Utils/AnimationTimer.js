@@ -43,9 +43,9 @@ AnimationTimer.prototype.start = function()
     this.running = true;
 
     var self = this;
-    function loop()
+    function loop(now)
     {
-        self.callback();
+        self.callback(now);
 
         if(self.running)
         {
@@ -53,7 +53,7 @@ AnimationTimer.prototype.start = function()
         }
     }
 
-    loop();
+    loop(0);
 };
 
 /**

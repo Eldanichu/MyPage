@@ -20,7 +20,7 @@ dataLoader("Items").then(res => {
 
   setTimeout(()=>{
     emit('loading', false);
-  },10000)
+  },1000)
 })
 
 
