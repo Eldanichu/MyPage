@@ -2,6 +2,8 @@
 import {ref, inject} from "vue";
 import {Timer} from "@/Utils/Timer";
 import SpritePlayer from "@/components/SpritePlayer.vue";
+import {tileset_legacy} from "@/assets/AssetsImporter";
+
 
 const game = inject('game')
 console.log(game.value)
@@ -30,6 +32,7 @@ function timerControl(funcName) {
 <template>
   <div class="home-warp">
     <sprite-player
+        :src="tileset_legacy"
         :size="17"
     ></sprite-player>
   </div>

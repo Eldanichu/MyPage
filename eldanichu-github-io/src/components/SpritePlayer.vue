@@ -8,10 +8,13 @@
 
 <script setup>
 import {Framerator} from "@/Utils/Framerator";
-import {ref, defineProps, computed} from "vue";
-import {tileset_legacy} from "@/assets/AssetsImporter";
+import {ref, computed} from "vue";
 
 const props = defineProps({
+  src:{
+    type:String,
+    default:''
+  },
   size: {
     type: [String, Number],
     default: 16
@@ -44,7 +47,7 @@ const playDir = computed(() => {
 
 const imageUrl = computed(() => {
 
-  return tileset_legacy
+  return props.src
 });
 
 const bgPosition = computed(() => {
