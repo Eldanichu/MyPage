@@ -1,35 +1,17 @@
 <template>
-  <header>
+  <app-header></app-header>
 
-    <div class="wrapper">
-      <nav class="">
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <app-main>
+    <RouterView/>
+  </app-main>
 </template>
 
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import {RouterView} from 'vue-router'
+import AppHeader from "@/laout/AppHeader.vue";
+import AppMain from "@/laout/AppMain.vue";
 </script>
 
 <style lang="scss" scoped>
-//nav a.router-link-exact-active {
-//  color: var(--color-text);
-//}
-//
-//nav a.router-link-exact-active:hover {
-//  background-color: transparent;
-//}
 
-//nav a:first-of-type {
-//  border: 0;
-//}
-
-@media (min-width: 1024px) {
-
-}
 </style>

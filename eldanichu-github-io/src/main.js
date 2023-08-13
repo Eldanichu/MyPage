@@ -11,13 +11,41 @@ import {
     create,
     NConfigProvider,
     // component
-    NButton
+    NButton,
+    NProgress,
+    NPopover,
+    NPopconfirm,
+    NBadge,
+    NAlert,
+    NColorPicker,
+    NCheckbox,
+    NInput,
+    NDynamicInput,
+    NForm,
+    NSlider,
+    NSelect,
+    NSwitch,
+    NCountdown
 } from 'naive-ui'
 
 const naive = create({
     components: [
         NButton,
-        NConfigProvider
+        NProgress,
+        NPopover,
+        NPopconfirm,
+        NBadge,
+        NAlert,
+        NColorPicker,
+        NConfigProvider,
+        NCheckbox,
+        NInput,
+        NDynamicInput,
+        NForm,
+        NSlider,
+        NSelect,
+        NSwitch,
+        NCountdown
     ]
 })
 
