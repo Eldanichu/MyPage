@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import {provide, ref, defineEmits} from "vue";
+import {provide, ref} from "vue";
 
 const emit = defineEmits(['loading']);
 emit('loading', true)

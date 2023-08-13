@@ -30,7 +30,7 @@ function timerControl(funcName) {
 <template>
   <div class="home-warp">
     <sprite-player
-        src="static/images/tileset_legacy.png"
+        src="assets/images/tileset_legacy.png"
         :size="17"
     ></sprite-player>
   </div>

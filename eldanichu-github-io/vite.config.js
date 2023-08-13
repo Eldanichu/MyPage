@@ -18,7 +18,6 @@ export default defineConfig({
     https:false
   },
   build:{
-    assetsDir:'static',
     outDir:'dist',
     rollupOptions:{
       output:{
