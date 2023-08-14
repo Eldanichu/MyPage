@@ -1,23 +1,31 @@
 <script setup>
-import {ref} from 'vue';
+import {reactive, ref} from 'vue';
 import {darkTheme} from 'naive-ui'
 import AppView from "@/views/AppView.vue";
 import GameProvider from "@/providers/GameProvider.vue";
 import LoadingScreen from "@/components/LoadingScreen.vue";
 
-const isLoading = ref(true)
-const onLoading = (finish) => {
-  isLoading.value = finish
+const loadingMsg = ref({})
+
+const onLoading = (msg) => {
+  console.log(msg)
+  loadingMsg.value = msg
 }
 
 </script>
 
 <template>
   <game-provider @loading="onLoading">
-    <loading-screen v-if="isLoading"></loading-screen>
+    <loading-screen
+        v-if="loadingMsg.show"
+        :index="loadingMsg.index"
+        :total="loadingMsg.total"
+        :name="loadingMsg.name"
+    >
+    </loading-screen>
     <transition name="slide-in-out">
-      <n-config-provider :theme="darkTheme" v-if="!isLoading">
-        <app-view />
+      <n-config-provider :theme="darkTheme" v-if="!loadingMsg.show">
+        <app-view/>
       </n-config-provider>
     </transition>
   </game-provider>

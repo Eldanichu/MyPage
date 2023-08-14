@@ -3,26 +3,55 @@
 </template>
 
 <script setup>
-import {provide, ref} from "vue";
+import loadsh from 'lodash/function'
+import {provide, reactive} from "vue";
+import {dataLoader} from "@/Utils/DataLoader";
 
 const emit = defineEmits(['loading']);
-emit('loading', true)
 
-const game = ref({});
-const dataLoader = async (data) => {
-  const loader = await import(`@/GameData/${data}.yaml`)
+const promises = [
+  {name: '物品', key: 'items', req: dataLoader("Items")},
+  {name: '技能', key: 'skills', req: dataLoader("Skills")},
+  {name: '怪物', key: 'monsters', req: dataLoader("Monsters")},
+]
 
-  return loader.default
-}
-
-dataLoader("Items").then(res => {
-  game.value = res;
-
-  setTimeout(()=>{
-    emit('loading', false);
-  },1000)
+const emitMsg = reactive({
+  show: true,
+  name: '-/-',
+  index: 0,
+  total: promises.length
 })
 
+emit('loading', emitMsg)
 
-provide('game', game)
+const db = reactive({
+  items: null,
+  monsters: null,
+  skills: null
+});
+
+const onFinished = () => {
+  emitMsg.show = !(emitMsg.index >= emitMsg.total);
+}
+
+const delay = 800;
+
+const delayedExec = (res, name, key, time) => {
+  loadsh.delay(() => {
+    db[key] = res;
+    emitMsg.name = name;
+    emitMsg.index++;
+
+    onFinished()
+    emit('loading', emitMsg);
+  }, time)
+}
+
+promises.reduce((pre, item, index) => {
+  item.req.then(res => {
+    delayedExec(res, item.name, item.key, delay * (index + 1))
+  })
+}, [])
+
+provide('DB', db)
 </script>

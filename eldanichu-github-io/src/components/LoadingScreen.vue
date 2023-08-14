@@ -12,8 +12,11 @@
             indicator-text-color="#fff"
         />
         <div class="sub-title">
-          <span class="res-count res">({{ res.index }}/{{ res.total }})</span>
-          <span class="res-name res">正在加载{{ res.name }}数据...</span>
+          <template v-if="name !== '-/-'">
+            <span class="res-count res">({{ index }}/{{ total }})</span>
+            <span class="res-name res">正在加载{{ name }}数据...</span>
+          </template>
+          <span class="res-name res" v-else >正在准备数据...</span>
         </div>
       </div>
     </div>
@@ -21,13 +24,25 @@
 </template>
 
 <script setup>
-import {ref, reactive} from 'vue';
+import {ref, reactive, computed} from 'vue';
 
-const percent = ref(0)
-const res = reactive({
-  total: 5,
-  index: 1,
-  name: '物品'
+const props = defineProps({
+  index: {
+    type: Number,
+    default: 0
+  },
+  total: {
+    type: Number,
+    default: 1
+  },
+  name: {
+    type: String,
+    default: '-/-'
+  }
+})
+
+const percent = computed(()=>{
+  return props.index / Math.max(props.total ,1) * 100;
 })
 
 </script>
