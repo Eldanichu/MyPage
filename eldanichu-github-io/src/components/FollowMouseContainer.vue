@@ -17,6 +17,12 @@ const props = defineProps({
     default: () => {
       return {}
     }
+  },
+  data:{
+    type: Object,
+    default: () => {
+      return {}
+    }
   }
 })
 
@@ -52,6 +58,9 @@ const useDocumentMouseMove = (e) => {
   position.y = clientY + 'px';
 
   let {firstElementChild} = follower.value
+  if (!firstElementChild) {
+    return;
+  }
   let {width, height} = firstElementChild.getBoundingClientRect();
   firstElementChild.style.position = 'absolute'
 
