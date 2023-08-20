@@ -17,16 +17,10 @@ const props = defineProps({
     default: () => {
       return {}
     }
-  },
-  data:{
-    type: Object,
-    default: () => {
-      return {}
-    }
   }
 })
 
-let {x: mOffsetX = 0, y: mOffsetY = 0} = props.offset;
+
 
 const follower = ref(null)
 
@@ -53,6 +47,8 @@ const display = computed(() => {
 let {width: cw, height: ch} = document.body.getBoundingClientRect();
 
 const useDocumentMouseMove = (e) => {
+  let {x: mOffsetX = 0, y: mOffsetY = 0} = props.offset;
+
   let {clientX, clientY} = e;
   position.x = clientX + 'px';
   position.y = clientY + 'px';

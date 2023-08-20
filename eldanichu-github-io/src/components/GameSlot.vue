@@ -11,29 +11,18 @@
         </div>
       </a>
     </div>
-
-    <follow-mouse-container
-        :offset="{x:12,y:12}"
-    >
-      <a class="mouse-hover-object">
-        <div class="slot-tip" v-show="itemObject.showNumber">
-          <span>{{ item.stacks }}</span>
-        </div>
-      </a>
-    </follow-mouse-container>
   </div>
 </template>
 
 <script setup>
-import {reactive, ref} from "vue";
-import FollowMouseContainer from "@/components/FollowMouseContainer.vue";
+import {computed, reactive, ref} from "vue";
 
 const props = defineProps({
   item: {
     type: Object,
     default: () => {
       return {
-        stacks: 1,
+        stacks: 0,
         name: '-',
         props: {}
       }
@@ -42,9 +31,12 @@ const props = defineProps({
 })
 
 let {item} = props;
-const itemObject = reactive({
-  data: item,
-  showNumber: item.stacks > 0,
+
+const itemObject = computed(()=>{
+  return {
+    data: item,
+    showNumber: item.stacks > 0
+  }
 })
 
 let isHover = ref(false);

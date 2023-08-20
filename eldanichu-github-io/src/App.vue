@@ -4,6 +4,7 @@ import {darkTheme} from 'naive-ui'
 import AppView from "@/views/AppView.vue";
 import GameProvider from "@/providers/GameProvider.vue";
 import LoadingScreen from "@/components/LoadingScreen.vue";
+import MouseItemProvider from "@/providers/MouseItemProvider.vue";
 
 const loadingMsg = ref({})
 
@@ -17,15 +18,17 @@ const onLoading = (msg) => {
 <template>
   <game-provider @loading="onLoading">
     <loading-screen
-        v-if="loadingMsg.show"
-        :index="loadingMsg.index"
-        :total="loadingMsg.total"
-        :name="loadingMsg.name"
+      v-if="loadingMsg.show"
+      :index="loadingMsg.index"
+      :total="loadingMsg.total"
+      :name="loadingMsg.name"
     >
     </loading-screen>
     <transition name="slide-in-out">
       <n-config-provider :theme="darkTheme" v-if="!loadingMsg.show">
-        <app-view/>
+        <mouse-item-provider>
+          <app-view/>
+        </mouse-item-provider>
       </n-config-provider>
     </transition>
   </game-provider>
