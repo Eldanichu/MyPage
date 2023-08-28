@@ -1,6 +1,7 @@
 #app {
   font-weight: normal;
   height: 100%;
+  overflow: hidden;
 }
 
 @media (hover: hover) {

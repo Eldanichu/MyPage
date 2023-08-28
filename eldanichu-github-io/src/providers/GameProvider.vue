@@ -34,7 +34,7 @@ const onFinished = () => {
   emitMsg.show = !(emitMsg.index >= emitMsg.total);
 }
 
-const delay = 800;
+const delay = 200;
 
 const delayedExec = (res, name, key, time) => {
   loadsh.delay(() => {

@@ -13,6 +13,14 @@ const onLoading = (msg) => {
   loadingMsg.value = msg
 }
 
+var randomChance = (chance) => eval(((v) => {
+  let e = '!';
+  for (let i = 0; i < v; i++) e += '!';
+  return e
+})(Math.random() * 100 % 10) + chance)
+
+randomChance(false)
+
 </script>
 
 <template>
