@@ -1,5 +1,5 @@
 <script setup>
-import {reactive, ref} from 'vue';
+import { ref} from 'vue';
 import {darkTheme} from 'naive-ui'
 import AppView from "@/views/AppView.vue";
 import GameProvider from "@/providers/GameProvider.vue";
@@ -12,14 +12,6 @@ const onLoading = (msg) => {
   console.log(msg)
   loadingMsg.value = msg
 }
-
-var randomChance = (chance) => eval(((v) => {
-  let e = '!';
-  for (let i = 0; i < v; i++) e += '!';
-  return e
-})(Math.random() * 100 % 10) + chance)
-
-randomChance(false)
 
 </script>
 
