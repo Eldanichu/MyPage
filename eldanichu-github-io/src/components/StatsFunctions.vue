@@ -9,9 +9,23 @@
 </template>
 
 <script setup>
-import {ref} from "vue";
+import {ref, watch} from "vue";
 
-const emits = defineEmits(['sfClick'])
+const props = defineProps({
+  modelValue: {
+    type: String,
+    default: ''
+  }
+})
+
+const emits = defineEmits(['sfClick', 'update:modelValue'])
+
+const comName = ref('');
+watch(() => props.modelValue, (v) => {
+  comName.value = v;
+}, {
+  immediate: true
+})
 
 const funcButtons = ref([
   {label: '人物', value: 'char'},
@@ -24,6 +38,7 @@ const funcButtons = ref([
 
 const funcClick = function ({value}) {
   emits('sfClick', {value})
+  emits('update:modelValue', value);
 }
 
 </script>
