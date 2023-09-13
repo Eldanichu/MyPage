@@ -21,7 +21,8 @@ mi.setItem({
   <div class="main-view">
     <div class="container">
       <div class="aside">
-        <stats-functions></stats-functions>
+        <stats-functions
+        ></stats-functions>
       </div>
       <div class="header">
         header

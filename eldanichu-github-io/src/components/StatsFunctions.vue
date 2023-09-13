@@ -2,14 +2,17 @@
   <div class="stat-func">
     <div class="func-buttons">
       <div class="f-button" v-for="item in funcButtons" :key="item.value">
-        <n-button @click="funcClick(item)">{{ item.label }}</n-button>
+        <n-button
+          v-bind="buttonBinding(item)"
+          @click="funcClick(item)">{{ item.label }}
+        </n-button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import {ref, watch} from "vue";
+import {reactive, ref, watch} from "vue";
 
 const props = defineProps({
   modelValue: {
@@ -20,12 +23,17 @@ const props = defineProps({
 
 const emits = defineEmits(['sfClick', 'update:modelValue'])
 
+
 const comName = ref('');
 watch(() => props.modelValue, (v) => {
   comName.value = v;
 }, {
   immediate: true
 })
+const buttonBinding = function (item) {
+  return item.value === comName.value ? {color: '#7fe7c4'} : null
+}
+
 
 const funcButtons = ref([
   {label: '人物', value: 'char'},
@@ -37,6 +45,7 @@ const funcButtons = ref([
 ])
 
 const funcClick = function ({value}) {
+  comName.value = comName.value === value ? '' : value;
   emits('sfClick', {value})
   emits('update:modelValue', value);
 }
