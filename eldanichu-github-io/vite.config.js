@@ -5,7 +5,16 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 
 import UnoCSS from 'unocss/vite'
-import ViteYaml from '@modyfi/vite-plugin-yaml';
+
+import VueImages from 'unplugin-vue-images/vite'
+
+
+const collectionDirs = [
+  'src/assets/images',
+  'src/static/dark'
+]
+
+const extensions = ['jpg', 'jpeg', 'png', 'svg', 'webp', 'gif']
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -44,7 +53,11 @@ export default defineConfig({
     UnoCSS({
 
     }),
-    ViteYaml()
+    VueImages({
+      dirs: collectionDirs,
+      extensions,
+      compiler: 'vue3',
+    })
   ],
   resolve: {
     alias: {

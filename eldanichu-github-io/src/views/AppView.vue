@@ -11,8 +11,8 @@
 
 <script setup>
 import {RouterView} from 'vue-router'
-import AppHeader from "@/laout/AppHeader.vue";
-import AppMain from "@/laout/AppMain.vue";
+import AppHeader from "@/layout/AppHeader.vue";
+import AppMain from "@/layout/AppMain.vue";
 </script>
 
 <style lang="scss" scoped>
